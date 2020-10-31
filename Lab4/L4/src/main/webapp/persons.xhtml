@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head> </h:head>
+    <f:view id="view">
+        <p:dataTable var="person" value="#{PersonsBean.persons()}">
+            <p:column headerText="Id">
+                <h:outputText value="#{person.id}" />
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{person.name}" />
+            </p:column>
+        </p:dataTable>
+    </f:view>
+    <div>
+        <h3>Insert new person</h3>
+        <h:form>
+            <div class="container-400 ui-fluid">
+                <div class="p-field">
+                    <p:outputLabel for="personName" value="Name"/>
+                    <p:inputText value="#{PersonsBean.name}" id="personName"/>
+                </div>
+            </div>
+            <p:commandButton value="Save" action="#{PersonsBean.savePerson()}" style="margin-right:20px;" styleClass="ui-priority-primary" >
+                <p:ajax render="view"/>
+            </p:commandButton>
+        </h:form>
+    </div>
+</html>

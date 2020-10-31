@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<f:view id="view">
+    <p:dataTable var="m" value="#{MeetingBean.meetings()}">
+        <p:column headerText="Id">
+            <h:outputText value="#{m.id}" />
+        </p:column>
+
+        <p:column headerText="Name" style="width: 100px">
+            <h:outputText value="#{m.name}" />
+        </p:column>
+
+        <p:column headerText="StartingTime" style="width: 100px">
+            <h:outputText value="#{m.startingTime}" />
+        </p:column>
+
+        <p:column headerText="Duration" style="width: 100px">
+            <h:outputText value="#{m.duration}" />
+        </p:column>
+
+        <p:column headerText="Attendees">
+            <h:outputText value="#{m.attendees}" />
+        </p:column>
+    </p:dataTable>
+</f:view>
+<div>
+    <h3>Insert new Meeting</h3>
+    <h:form>
+        <div class="container-400 ui-fluid">
+            <div class="p-field">
+                <p:outputLabel for="meetingName" value="Meeting Name"/>
+                <p:inputText value="#{MeetingBean.name}" id="meetingName"/>
+            </div>
+            <div class="p-field">
+                <p:outputLabel for="meetingDuration" value="Meeting Duration"/>
+                <p:inputText value="#{MeetingBean.duration}" id="meetingDuration"/>
+            </div>
+        </div>
+        <p:commandButton value="Save" action="#{MeetingBean.saveMeeting()}" style="margin-right:20px;" styleClass="ui-priority-primary" >
+            <f:ajax render="view"/>
+        </p:commandButton>
+    </h:form>
+</div>
+<div>
+    <h3>Add new Attendee</h3>
+    <h:form>
+        <div class="container-400 ui-fluid">
+            <div class="p-field">
+                <p:outputLabel for="meetingId" value="Meeting ID"/>
+                <p:inputText value="#{MeetingBean.meetingId}" id="meetingId"/>
+            </div>
+            <div class="p-field">
+                <p:outputLabel for="attendeeId" value="Attendee ID"/>
+                <p:inputText value="#{MeetingBean.personId}" id="attendeeId"/>
+            </div>
+        </div>
+        <p:commandButton value="Save" action="#{MeetingBean.addAttendee()}" style="margin-right:20px;" styleClass="ui-priority-primary" >
+            <f:ajax render="view"/>
+        </p:commandButton>
+    </h:form>
+</div>
+</html>

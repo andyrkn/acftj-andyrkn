@@ -1,0 +1,6 @@
+.container-400{
+    display:flex;
+    width: 400px;
+    height: auto;
+    flex-direction: column;
+}

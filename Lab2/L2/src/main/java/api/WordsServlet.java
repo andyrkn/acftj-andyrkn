@@ -1,6 +1,5 @@
 package api;
 
-import com.google.gson.Gson;
 import domain.Word;
 import persistance.IWordsRepository;
 import persistance.WordsRepository;

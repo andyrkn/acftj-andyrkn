@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/jl">
+<ui:composition template="common-page.xhtml">
+    <ui:define name="content">
+        <comp:data-view field1="id" label1="Id"
+                        field2="name" label2="Name"
+                        bean="#{locationBean}">
+        </comp:data-view>
+        <div>
+            <h3>Insert new location</h3>
+            <h:form>
+                <div class="container-400 ui-fluid">
+                    <div class="p-field">
+                        <p:outputLabel for="locationName" value="Name"/>
+                        <p:inputText value="#{locationBean.name}" id="locationName"/>
+                    </div>
+                </div>
+                <p:commandButton value="Save" action="#{locationBean.saveLocation()}" style="margin-right:20px;" styleClass="ui-priority-primary" >
+                    <p:ajax render="view"/>
+                </p:commandButton>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

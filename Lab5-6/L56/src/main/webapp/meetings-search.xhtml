@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/jl">
+<h:head>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+    <ui:composition template="common-page.xhtml">
+        <ui:define name="content">
+            <h:panelGroup id="view">
+                <comp:data-view
+                                field1="id" label1="Id"
+                                field2="name" label2="Name"
+                                field4="duration" label4="Duration"
+                                field5="location" label5="Location"
+                                field6="attendees" label6="Attendees"
+                                bean="#{meetingSearchBean}">
+                </comp:data-view>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid>
+                    <p:selectBooleanCheckbox value="#{meetingSearchBean.name}" itemLabel="Name"/>
+                    <p:inputText value="#{meetingSearchBean.nameInput}" />
+                    <p:selectBooleanCheckbox value="#{meetingSearchBean.duration}" itemLabel="Duration"/>
+                    <p:inputText value="#{meetingSearchBean.durationInput}" />
+                    <p:selectBooleanCheckbox value="#{meetingSearchBean.location}" itemLabel="Location"/>
+                    <p:inputText value="#{meetingSearchBean.locationInput}" />
+                    <p:commandButton update=":view" value="Search" action="${meetingSearchBean.search()}"/>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

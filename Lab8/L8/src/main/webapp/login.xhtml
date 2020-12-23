@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h3="http://java.sun.com/jsf/html">
+<h:body>
+    <ui:composition template="common-page.xhtml">
+        <ui:define name="content">
+            <h3>Login page</h3>
+
+            <h:panelGroup id="loggedIn">
+                <h:form rendered="#{!loginBean.loggedIn}" >
+                    <div class="container-400 ui-fluid">
+                        <div class="p-field">
+                            <p:outputLabel for="name" value="Name"/>
+                            <p:inputText value="#{loginBean.name}" id="name"/>
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel for="password" value="Password"/>
+                            <p:inputText value="#{loginBean.password}" id="password" type="password"/>
+                        </div>
+                    </div>
+                    <p:commandButton value="Login" action="#{loginBean.login()}" style="margin-right:20px;" styleClass="ui-priority-primary" update="loggedIn main-header"/>
+                </h:form>
+
+                <h:panelGroup rendered="#{loginBean.loggedIn}">
+                    <p:outputLabel value="Welcome, #{loginBean.name}" />
+                    <br/>
+                    <p:commandButton value="Logout" action="#{loginBean.logout()}" style="margin-right:20px;" styleClass="ui-priority-primary" update="loggedIn main-header"/>
+                </h:panelGroup>
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

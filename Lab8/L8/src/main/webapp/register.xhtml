@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+    <ui:composition template="common-page.xhtml">
+        <ui:define name="content">
+            <div>
+                <h3>Register page</h3>
+                <h:form rendered="#{registerBean.canRegister}">
+                    <div class="container-400 ui-fluid">
+                        <div class="p-field">
+                            <p:outputLabel for="name" value="Name"/>
+                            <p:inputText value="#{registerBean.name}" id="name"/>
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel for="password" value="Password"/>
+                            <p:inputText value="#{registerBean.password}" id="password" type="password"/>
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel for="role" value="Role"/>
+                            <p:inputText value="#{registerBean.role}" id="role"/>
+                        </div>
+                    </div>
+                    <p:commandButton value="Register" action="#{registerBean.save()}" style="margin-right:20px;" styleClass="ui-priority-primary"/>
+                </h:form>
+                <h:panelGroup rendered="#{!registerBean.canRegister}">
+                    <h3>Registering new users is temporarily disabled</h3>
+                </h:panelGroup>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

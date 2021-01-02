@@ -1,7 +1,7 @@
 package quartz;
 
 import business.ItemQueueingJob;
-import business.ScrapPriceJob;
+import business.EmagPriceScrapJob;
 import org.quartz.*;
 import org.quartz.spi.JobFactory;
 import org.quartz.spi.TriggerFiredBundle;
@@ -28,7 +28,7 @@ public class QuartzJobFactory implements JobFactory {
     }
 
     public static JobDetail emagScrapJob() {
-        return JobBuilder.newJob(ScrapPriceJob.class)
+        return JobBuilder.newJob(EmagPriceScrapJob.class)
                 .withIdentity("scrap-price", "scrap-group")
                 .usingJobData("item", "-")
                 .usingJobData("url", "-")
@@ -52,3 +52,9 @@ public class QuartzJobFactory implements JobFactory {
                 .build();
     }
 }
+
+/*
+                .withSchedule(SimpleScheduleBuilder.simpleSchedule()
+                        .withIntervalInSeconds(1)
+                        .repeatForever())
+ */

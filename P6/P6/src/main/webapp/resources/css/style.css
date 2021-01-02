@@ -1,0 +1,12 @@
+.container-400{
+    display:flex;
+    width: 400px;
+    height: auto;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}

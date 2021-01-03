@@ -19,9 +19,6 @@
                     <p:outputLabel for="url" value="Item Url"/>
                     <p:inputText value="#{getItemsBean.url}" id="url"/>
                 </div>
-                <div class="p-field">
-                    <p:selectBooleanCheckbox itemLabel="Timeframe enabled"/>
-                </div>
                 <p:commandButton value="Search" validateClient="true" style="margin-right:20px;" styleClass="ui-priority-primary" update="view"/>
             </h:form>
             <h:panelGroup id="view">

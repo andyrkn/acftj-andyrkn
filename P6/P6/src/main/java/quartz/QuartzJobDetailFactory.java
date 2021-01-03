@@ -1,14 +1,14 @@
 package quartz;
 
-import business.EmagPriceScrapJob;
-import business.ItemQueueingJob;
+import business.jobs.PriceScrapJob;
+import business.jobs.ItemQueueingJob;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 
 public final class QuartzJobDetailFactory {
 
-    public static JobDetail emagScrapJob() {
-        return JobBuilder.newJob(EmagPriceScrapJob.class)
+    public static JobDetail itemScrapJob() {
+        return JobBuilder.newJob(PriceScrapJob.class)
                 .withIdentity(QuartzJobConstants.ITEM_SCRAP_KEY, QuartzJobConstants.ITEM_SCRAP_GROUP)
                 .usingJobData("item", "-")
                 .usingJobData("url", "-")

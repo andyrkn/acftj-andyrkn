@@ -9,8 +9,13 @@ import java.io.IOException;
 @Named("NavBean")
 @ApplicationScoped
 public class NavBean {
+
     public void toHome() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect("/home.xhtml");
+    }
+    public void toAdd() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect("/add-item.xhtml");
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h3="http://java.sun.com/jsf/html"
+      xmlns:comp="http://java.sun.com/jsf/composite/jl">
+<h:body>
+    <ui:composition template="common-page.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <div class="p-field">
+                    <p:outputLabel for="item" value="Item Name"/>
+                    <p:inputText value="#{addItemsBean.itemName}" id="item"/>
+                </div>
+                <p:commandButton value="Search" action="#{addItemsBean.save}" validateClient="true" style="margin-right:20px;" styleClass="ui-priority-primary"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

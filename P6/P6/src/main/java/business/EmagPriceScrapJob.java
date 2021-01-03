@@ -31,8 +31,10 @@ public class EmagPriceScrapJob implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+
         String item = jobExecutionContext.getMergedJobDataMap().getString("item");
         String url = jobExecutionContext.getMergedJobDataMap().getString("url");
+        logger.info("Scraping " + item + " on " + url);
 
         try {
             HtmlPage page = webClientService.getClient().getPage(url);
@@ -56,8 +58,6 @@ public class EmagPriceScrapJob implements Job {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-
-        logger.info("Scraping " + item + " on " + url);
     }
 
     private HtmlElement get(HtmlPage page, String xpath){

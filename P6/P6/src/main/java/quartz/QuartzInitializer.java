@@ -2,7 +2,6 @@ package quartz;
 
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
-import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
@@ -26,9 +25,9 @@ public class QuartzInitializer implements ServletContextListener {
             Scheduler scheduler = schedulerFactory.getScheduler();
             scheduler.setJobFactory(factory);
 
-            scheduler.addJob(QuartzJobFactory.itemQueueingJob(), true, true);
-            scheduler.addJob(QuartzJobFactory.emagScrapJob(), true, true);
-            scheduler.scheduleJob(QuartzJobFactory.itemQueueingTrigger());
+            scheduler.addJob(QuartzJobDetailFactory.itemQueueingJob(), true, true);
+            scheduler.addJob(QuartzJobDetailFactory.emagScrapJob(), true, true);
+            scheduler.scheduleJob(QuartzTriggerFactory.itemQueueingTrigger());
 
         } catch (SchedulerException e) {
             e.printStackTrace();

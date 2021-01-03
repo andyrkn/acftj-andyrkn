@@ -42,6 +42,7 @@ public class QuartzJobFactory implements JobFactory {
                 .build();
     }
 
+
     public static Trigger itemQueueingTrigger() {
         return TriggerBuilder.newTrigger()
                 .startNow()

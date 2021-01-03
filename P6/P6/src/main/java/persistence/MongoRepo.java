@@ -54,7 +54,7 @@ abstract class MongoRepo<T extends IDocument> {
 
     protected MongoCollection<T> GetCollection() { return database.getCollection(getDerivedClass().getName(), getDerivedClass()); }
 
-    protected MongoCollection<T> GetCollection(String collection) { return database.getCollection(collection, getDerivedClass()); }
+    protected MongoCollection<T> GetCollection(String collection) { return database.getCollection(collection.replaceAll("\\s+","_"), getDerivedClass()); }
 
     protected abstract Class<T> getDerivedClass();
 }

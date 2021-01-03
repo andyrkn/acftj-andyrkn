@@ -6,6 +6,8 @@ import domain.ItemState;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 
+import static com.mongodb.client.model.Filters.*;
+
 @Singleton
 public class ItemStateRepo extends MongoRepo<ItemState> {
 
@@ -15,10 +17,10 @@ public class ItemStateRepo extends MongoRepo<ItemState> {
         return true;
     }
 
-    public ArrayList<ItemState> GetAllStatesForItem(String item) {
+    public ArrayList<ItemState> GetAllStatesForItem(String item, String url) {
         ArrayList<ItemState> documents = new ArrayList<>();
 
-        MongoCursor<ItemState> iterable = GetCollection("items_"+item).find().iterator();
+        MongoCursor<ItemState> iterable = GetCollection("items_"+item).find((eq("url",url))).iterator();
         while(iterable.hasNext())
         {
             documents.add(iterable.next());

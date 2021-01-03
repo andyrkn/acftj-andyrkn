@@ -10,7 +10,7 @@ public final class QuartzTriggerFactory {
         return TriggerBuilder.newTrigger()
                 .startNow()
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule()
-                        .withIntervalInSeconds(15)
+                        .withIntervalInSeconds(360)
                         .repeatForever())
                 .forJob(QuartzJobConstants.QUEUE_SEARCH_KEY, QuartzJobConstants.QUEUE_SEARCH_GROUP)
                 .build();

@@ -26,7 +26,7 @@
     </composite:interface>
     <composite:implementation>
         <f:view>
-            <p:dataTable var="m" value="#{cc.attrs.bean.view()}">
+            <p:dataTable var="m" value="#{cc.attrs.bean.view}">
                 <p:column headerText="#{cc.attrs.label1}">
                     <h:outputText value="#{m[cc.attrs.field1]}" />
                 </p:column>

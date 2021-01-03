@@ -5,11 +5,32 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h3="http://java.sun.com/jsf/html">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h3="http://java.sun.com/jsf/html"
+      xmlns:comp="http://java.sun.com/jsf/composite/jl">
 <h:body>
     <ui:composition template="common-page.xhtml">
         <ui:define name="content">
-            <h3>Home page</h3>
+            <h:form>
+                <div class="p-field">
+                    <p:outputLabel for="item" value="Item Name"/>
+                    <p:inputText value="#{getItemsBean.itemName}" id="item"/>
+                </div>
+                <div class="p-field">
+                    <p:outputLabel for="url" value="Item Url"/>
+                    <p:inputText value="#{getItemsBean.url}" id="url"/>
+                </div>
+                <div class="p-field">
+                    <p:selectBooleanCheckbox itemLabel="Timeframe enabled"/>
+                </div>
+                <p:commandButton value="Search" validateClient="true" style="margin-right:20px;" styleClass="ui-priority-primary" update="view"/>
+            </h:form>
+            <h:panelGroup id="view">
+                <comp:data-view
+                        field1="price" label1="Price"
+                        field2="date" label2="Date Time"
+                        bean="#{getItemsBean}">
+                </comp:data-view>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </h:body>

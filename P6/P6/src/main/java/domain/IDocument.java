@@ -8,5 +8,5 @@ public abstract class IDocument {
 
     @BsonProperty("_id")
     @BsonId
-    public ObjectId Id;
+    public ObjectId id;
 }

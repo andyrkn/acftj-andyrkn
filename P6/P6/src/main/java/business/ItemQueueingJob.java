@@ -2,12 +2,9 @@ package business;
 
 import domain.MonitorableItem;
 import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.MonitorableItemsRepo;
-import quartz.QuartzJobConstants;
-import quartz.QuartzJobFactory;
 import quartz.QuartzSchedulerFactory;
 import quartz.QuartzTriggerFactory;
 
@@ -33,9 +30,9 @@ public class ItemQueueingJob implements Job {
 
         List<MonitorableItem> items = monitorableItemsRepo.GetAllDocuments();
         items.forEach(item -> {
-            item.Urls.forEach(url -> {
+            item.urls.forEach(url -> {
                 try {
-                    scheduler.scheduleJob(QuartzTriggerFactory.itemScrapTrigger(url, item.Name));
+                    scheduler.scheduleJob(QuartzTriggerFactory.itemScrapTrigger(url, item.name));
                 } catch (SchedulerException e) {
                     logger.error(e.getMessage());
                     e.printStackTrace();

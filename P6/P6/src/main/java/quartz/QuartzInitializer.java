@@ -1,5 +1,6 @@
 package quartz;
 
+import beans.AddItemsBean;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.slf4j.LoggerFactory;

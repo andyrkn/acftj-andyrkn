@@ -4,21 +4,19 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
         xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:f="http://java.sun.com/jsf/core"
         xml:lang="en" lang="en"
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <h:outputStylesheet library="css" name="style.css"/>
-    </h:head>
     <body>
         <ui:composition>
-            <h:form class="flex-row" id="main-header">
-                    <p:commandButton value="Show Items" action="#{NavBean.toHome}"/>
-                    <p:commandButton value="Add Items" action="#{NavBean.toAdd}"/>
-                    <div style="display: inline-block; position: center">
+            <h:form class="header-container" id="main-header">
+                    <div class="page-title">
                         <h4>Java Labs</h4>
+                    </div>
+                    <div class="header-button-container">
+                        <p:commandButton value="Show Items" action="#{NavBean.toHome}"/>
+                        <p:commandButton value="Add Items" action="#{NavBean.toAdd}"/>
                     </div>
             </h:form>
         </ui:composition>

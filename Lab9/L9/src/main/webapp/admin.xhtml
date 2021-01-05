@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h3="http://java.sun.com/jsf/html"
+      xmlns:comp="http://java.sun.com/jsf/composite/jl">
+<h:body>
+    <ui:composition template="common-page.xhtml">
+        <ui:define name="content">
+
+            <h3>Admin page</h3>
+            <h:panelGroup id="loggedIn" rendered="#{adminBean.validRole}">
+                <h:form id="timeframes" >
+                    <div class="container-400 ui-fluid">
+                        <div class="p-field">
+                            <p:outputLabel for="sh" value="Start Hour"/>
+                            <p:inputText value="#{adminBean.startHour}" id="sh"/>
+                            <h:message for="sh" style="color: red" />
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel for="eh" value="End Hour"/>
+                            <p:inputText value="#{adminBean.endHour}" id="eh"/>
+                            <h:message for="eh" style="color: red" />
+                        </div>
+                        <div class="p-field">
+                            <p:selectBooleanCheckbox value="#{adminBean.enabled}" itemLabel="Timeframe enabled"/>
+                        </div>
+                    </div>
+                    <p:commandButton value="Toggle" action="#{adminBean.toggle()}" validateClient="true" style="margin-right:20px;" styleClass="ui-priority-primary" update="timeframes"/>
+                </h:form>
+                <br/>
+                <h:panelGroup id="view">
+                    <comp:data-view
+                            field1="id" label1="Id"
+                            field2="filename" label2="Filename"
+                            bean="#{adminBean}">
+                    </comp:data-view>
+                </h:panelGroup>
+
+            </h:panelGroup>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

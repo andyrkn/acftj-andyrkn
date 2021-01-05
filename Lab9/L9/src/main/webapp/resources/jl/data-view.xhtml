@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite = "http://java.sun.com/jsf/composite">
+
+    <composite:interface>
+        <composite:attribute name = "bean" required="true"/>
+        <composite:attribute name = "label1" required="true" type="java.lang.String"/>
+        <composite:attribute name = "field1" required="true" type="java.lang.String"/>
+        <composite:attribute name = "label2" type="java.lang.String"/>
+        <composite:attribute name = "field2" type="java.lang.String"/>
+        <composite:attribute name = "label3" type="java.lang.String"/>
+        <composite:attribute name = "field3" type="java.lang.String"/>
+        <composite:attribute name = "label4" type="java.lang.String"/>
+        <composite:attribute name = "field4" type="java.lang.String"/>
+        <composite:attribute name = "label5" type="java.lang.String"/>
+        <composite:attribute name = "field5" type="java.lang.String"/>
+        <composite:attribute name = "label6" type="java.lang.String"/>
+        <composite:attribute name = "field6" type="java.lang.String"/>
+    </composite:interface>
+    <composite:implementation>
+        <f:view>
+            <p:dataTable var="m" value="#{cc.attrs.bean.view()}">
+                <p:column headerText="#{cc.attrs.label1}">
+                    <h:outputText value="#{m[cc.attrs.field1]}" />
+                </p:column>
+
+                <c:if test="#{not empty cc.attrs.field2}">
+                    <p:column headerText="#{cc.attrs.label2}">
+                        <h:outputText value="#{m[cc.attrs.field2]}" />
+                    </p:column>
+                </c:if>
+
+                <c:if test="#{not empty cc.attrs.field3}">
+                    <p:column headerText="#{cc.attrs.label3}">
+                        <h:outputText value="#{m[cc.attrs.field3]}" />
+                    </p:column>
+                </c:if>
+
+                <c:if test="#{not empty cc.attrs.field4}">
+                    <p:column headerText="#{cc.attrs.label4}">
+                        <h:outputText value="#{m[cc.attrs.field4]}" />
+                    </p:column>
+                </c:if>
+
+                <c:if test="#{not empty cc.attrs.field5}">
+                    <p:column headerText="#{cc.attrs.label5}">
+                        <h:outputText value="#{m[cc.attrs.field5]}" />
+                    </p:column>
+                </c:if>
+
+                <c:if test="#{not empty cc.attrs.field6}">
+                <p:column headerText="#{cc.attrs.label6}">
+                    <h:outputText value="#{m[cc.attrs.field6]}" />
+                </p:column>
+            </c:if>
+            </p:dataTable>
+        </f:view>
+    </composite:implementation>
+</html>

@@ -37,8 +37,8 @@ public class DocumentsController {
 
         UserFile file = new UserFile(fileName, bytes);
         fileRepo.InsertOne(file);
-
-        return Response.ok().build();
+        String response = new Gson().toJson(new NewDocumentResponseModel(file.getId().toString()));
+        return Response.ok(response).build();
     }
 
     @GET
@@ -76,7 +76,7 @@ public class DocumentsController {
         String fileName = details.getFileName();
 
         UserFile file = new UserFile(fileName, bytes);
-        file.Id = new ObjectId(param);
+        file.setId(new ObjectId(param));
 
         UserFile result = fileRepo.Update(new ObjectId(param), file);
         if(result != null){

@@ -12,21 +12,21 @@ public class NavBean {
 
     public void toLogin() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect("/login.xhtml");
+        ec.redirect("/L9-1.0-SNAPSHOT/login.xhtml");
     }
 
     public void toRegister() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect("/register.xhtml");
+        ec.redirect("/L9-1.0-SNAPSHOT/register.xhtml");
     }
 
     public void toAdmin() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect("/admin.xhtml");
+        ec.redirect("/L9-1.0-SNAPSHOT/admin.xhtml");
     }
 
     public void toHome() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect("/home.xhtml");
+        ec.redirect("/L9-1.0-SNAPSHOT/home.xhtml");
     }
 }

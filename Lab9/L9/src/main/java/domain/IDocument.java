@@ -8,9 +8,13 @@ public abstract class IDocument {
 
     @BsonProperty("_id")
     @BsonId
-    public ObjectId Id;
+    private ObjectId Id;
 
-    public String getId() {
-        return Id.toString();
+    public ObjectId getId() {
+        return Id;
+    }
+
+    public void setId(ObjectId id) {
+        Id = id;
     }
 }

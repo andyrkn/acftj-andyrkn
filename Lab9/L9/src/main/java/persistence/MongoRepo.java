@@ -39,6 +39,8 @@ abstract class MongoRepo<T extends IDocument> {
     @Log
     public boolean InsertOne(T document){
 
+        init();
+
         GetCollection().insertOne(document);
         return true;
     }

@@ -28,7 +28,7 @@ public class QuartzInitializer implements ServletContextListener {
 
             scheduler.addJob(QuartzJobDetailFactory.itemQueueingJob(), true, true);
             scheduler.addJob(QuartzJobDetailFactory.itemScrapJob(), true, true);
-            scheduler.scheduleJob(QuartzTriggerFactory.itemQueueingTrigger());
+            // scheduler.scheduleJob(QuartzTriggerFactory.itemQueueingTrigger());
 
         } catch (SchedulerException e) {
             e.printStackTrace();

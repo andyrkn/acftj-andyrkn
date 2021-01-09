@@ -1,12 +1,11 @@
 package beans;
 
-import domain.ItemState;
-import domain.MonitorableItem;
+import business.ItemsService;
+import business.models.HistoryModel;
 import persistence.ItemStateRepo;
 import persistence.MonitorableItemsRepo;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -15,8 +14,8 @@ import java.util.List;
 @RequestScoped
 public class GetItemsBean {
 
-    private String itemName;
-    private String url;
+    @Inject
+    ItemsService service;
 
     @Inject
     MonitorableItemsRepo itemsRepo;
@@ -24,31 +23,9 @@ public class GetItemsBean {
     @Inject
     ItemStateRepo stateRepo;
 
-    public List<ItemState> view(){
-        return stateRepo.GetAllStatesForItem(itemName, url);
+    public List<HistoryModel> getView() {
+        return service.getAll();
     }
 
-    public List<MonitorableItem> getMonitorableItems() {
-        return itemsRepo.GetAllDocuments();
-    }
-
-    public List<ItemState> getView() {
-        return stateRepo.GetAllStatesForItem(itemName, url);
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 }
+

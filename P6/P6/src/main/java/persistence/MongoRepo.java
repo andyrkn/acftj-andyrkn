@@ -33,13 +33,13 @@ abstract class MongoRepo<T extends IDocument> {
         }
     }
 
-    public boolean InsertOne(T document){
+    public boolean insertOne(T document){
 
         GetCollection().insertOne(document);
         return true;
     }
 
-    public ArrayList<T> GetAllDocuments() {
+    public ArrayList<T> getAllDocuments() {
 
         ArrayList<T> documents = new ArrayList<>();
 

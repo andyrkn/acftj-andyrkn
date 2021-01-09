@@ -24,7 +24,7 @@ public class AddItemsBean {
     public void save() {
         try {
             List<String> urls = scrapper.scrapEmag(itemName);
-            repo.InsertOne(new MonitorableItem(itemName, urls));
+            repo.insertOne(new MonitorableItem(itemName, urls));
         }
         catch (Exception ignored){ }
     }

@@ -11,7 +11,7 @@
         <ui:define name="content">
             <h:form class="search-container">
                 <div class="input-field">
-                    <p:inputText placeholder="Item Name" style="margin-right: 15px; height: 33px; width: 200px" value="#{getItemsBean.itemName}" id="item"/>
+                    <p:inputText placeholder="Item Name" style="margin-right: 15px; height: 33px; width: 200px" value="#{addItemsBean.itemName}" id="item"/>
                 </div>
                 <p:commandButton value="Search" action="#{addItemsBean.save}" validateClient="true" style="margin-right:20px;" styleClass="ui-priority-primary"/>
             </h:form>

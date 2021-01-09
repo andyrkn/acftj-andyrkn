@@ -30,7 +30,7 @@ public class ItemQueueingJob implements Job {
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
 
         Scheduler scheduler = schedulerFactory.getScheduler();
-        List<MonitorableItem> items = monitorableItemsRepo.GetAllDocuments();
+        List<MonitorableItem> items = monitorableItemsRepo.getAllDocuments();
 
         int extraSeconds = 5;
 

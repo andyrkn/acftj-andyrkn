@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/jl">
+<h:head>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <ui:composition template="common-page.xhtml">
+        <ui:define name="content">
+            <h:form class="search-container">
+                <div class="input-field">
+                    <p:inputText placeholder="Item Name" style="margin-right: 15px; height: 33px; width: 200px" value="#{searchBean.itemName}" id="item"/>
+                </div>
+                <div class="input-field">
+                    <p:inputText placeholder="Item URL" style="margin-right: 15px; height: 33px; width: 500px" value="#{searchBean.url}" id="url" />
+                </div>
+                <p:commandButton value="Search" validateClient="true" style="margin-right:20px;" styleClass="ui-priority-primary" update="view"/>
+            </h:form>
+            <h:panelGroup id="view">
+                <comp:data-view
+                        field1="price" label1="Price"
+                        field2="date" label2="Date Time"
+                        bean="#{getItemsBean}">
+                </comp:data-view>
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

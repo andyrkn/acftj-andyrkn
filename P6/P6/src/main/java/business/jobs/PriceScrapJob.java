@@ -32,7 +32,7 @@ public class PriceScrapJob implements Job {
 
         String price = scapService.scrapEmag(url);
         if(price != null) {
-            repo.InsertSpecificItem(new ItemState(url, price, LocalDateTime.now()), item);
+            repo.insertSpecificItem(new ItemState(url, price, LocalDateTime.now()), item);
         }
     }
 }

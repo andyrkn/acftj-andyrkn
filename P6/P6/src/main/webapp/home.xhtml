@@ -3,7 +3,6 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:comp="http://java.sun.com/jsf/composite/jl">
     <h:head>
@@ -12,19 +11,13 @@
 <h:body>
     <ui:composition template="common-page.xhtml">
         <ui:define name="content">
-            <h:form class="search-container">
-                <div class="input-field">
-                    <p:inputText placeholder="Item Name" style="margin-right: 15px; height: 33px; width: 200px" value="#{getItemsBean.itemName}" id="item"/>
-                </div>
-                <div class="input-field">
-                    <p:inputText placeholder="Item URL" style="margin-right: 15px; height: 33px; width: 500px" value="#{getItemsBean.url}" id="url" />
-                </div>
-                <p:commandButton value="Search" validateClient="true" style="margin-right:20px;" styleClass="ui-priority-primary" update="view"/>
-            </h:form>
+            <p>Items with the best prices you can find</p>
             <h:panelGroup id="view">
                 <comp:data-view
-                        field1="price" label1="Price"
-                        field2="date" label2="Date Time"
+                        field1="name" label1="Name"
+                        field2="price" label2="Current best price"
+                        field3="bestPrice" label3="Best price recorded"
+                        field4="date" label4="Record at"
                         bean="#{getItemsBean}">
                 </comp:data-view>
             </h:panelGroup>

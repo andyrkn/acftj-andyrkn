@@ -16,6 +16,11 @@ public class NavBean {
     }
     public void toAdd() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect("/add-item.xhtml");
+        ec.redirect("/item-add.xhtml");
+    }
+
+    public void toSearch() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect("/item-search.xhtml");
     }
 }

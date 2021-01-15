@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:comp="http://java.sun.com/jsf/composite/jl">
+      xmlns:comp="http://java.sun.com/jsf/composite/jl"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <h:outputStylesheet library="css" name="style.css"/>
     </h:head>
@@ -19,6 +20,7 @@
                         field3="bestPrice" label3="Best price recorded"
                         field4="date" label4="Record at"
                         bean="#{getItemsBean}">
+                    hello there
                 </comp:data-view>
             </h:panelGroup>
         </ui:define>

@@ -23,4 +23,9 @@ public class NavBean {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect("/item-search.xhtml");
     }
+
+    public void toItemChart() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect("/item-chart.xhtml");
+    }
 }

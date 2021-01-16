@@ -30,7 +30,7 @@ public class PriceScrapJob implements Job {
         String url = jobExecutionContext.getMergedJobDataMap().getString("url");
         logger.info("Scraping " + item + " on " + url);
 
-        String price = scapService.scrapEmag(url);
+        String price = scapService.scrapUrl(url);
         if(price != null) {
             repo.insertSpecificItem(new ItemState(url, price, LocalDateTime.now()), item);
         }

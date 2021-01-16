@@ -30,7 +30,7 @@ public class ScrapItemPriceService {
         }
     };
 
-    public String scrapEmag(String url) {
+    public String scrapUrl(String url) {
         try {
             String price = pollAtXpath(url);
             return price;

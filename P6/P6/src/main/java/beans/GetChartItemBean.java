@@ -5,34 +5,40 @@ import business.models.MonitorableModel;
 import org.primefaces.model.chart.*;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Named
-@RequestScoped
+@ApplicationScoped
 public class GetChartItemBean implements Serializable {
 
     @Inject
+    NavBean navBean;
+
+    @Inject
     ItemsService service;
+
+    private String itemName;
 
     private LineChartModel lineModel2;
 
     @PostConstruct
     public void init() {
-        createLineModels();
-    }
-
-    public LineChartModel getLineModel2() {
-        return lineModel2;
+        if(itemName!= null) {
+            createLineModels();
+        }
     }
 
     private LineChartModel initCategoryModel() {
         LineChartModel model = new LineChartModel();
-        List<MonitorableModel> results = service.getSpecific("RTX 2060");
+        List<MonitorableModel> results = service.getSpecific(itemName);
 
         results.forEach(res -> {
             ChartSeries chart = new ChartSeries();
@@ -45,25 +51,6 @@ public class GetChartItemBean implements Serializable {
 
             model.addSeries(chart);
         });
-
-//        ChartSeries emag = new ChartSeries();
-//        emag.setLabel("Emag");
-//        emag.set("2004", Integer.parseInt(price));
-//        emag.set("2005", 4000);
-//        emag.set("2006", 440);
-//        emag.set("2007", 1500);
-//        emag.set("2008", 250);
-
-//        ChartSeries altex = new ChartSeries();
-//        altex.setLabel("Altex");
-//        altex.set("2004", 5200);
-//        altex.set("2005", 6000);
-//        altex.set("2006", 1100);
-//        altex.set("2007", 900);
-//        altex.set("2008", 1200);
-
-//        model.addSeries(chart);
-//        model.addSeries(altex);
 
         return model;
     }
@@ -80,5 +67,21 @@ public class GetChartItemBean implements Serializable {
         yAxis.setMax(7000);
     }
 
+    public void action(String itemName) throws IOException {
+        this.itemName = itemName;
+        navBean.toItemChart();
+        this.createLineModels();
+    }
 
+    public LineChartModel getLineModel2() {
+        return lineModel2;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
 }

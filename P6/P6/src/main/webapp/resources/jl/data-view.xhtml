@@ -23,6 +23,8 @@
         <composite:attribute name = "field5" type="java.lang.String"/>
         <composite:attribute name = "label6" type="java.lang.String"/>
         <composite:attribute name = "field6" type="java.lang.String"/>
+        <composite:attribute name="onclickbean" />
+        <composite:attribute name="onclickbean_param" />
     </composite:interface>
     <composite:implementation>
         <f:view>
@@ -56,10 +58,17 @@
                 </c:if>
 
                 <c:if test="#{not empty cc.attrs.field6}">
-                <p:column headerText="#{cc.attrs.label6}">
-                    <h:outputText value="#{m[cc.attrs.field6]}" />
-                </p:column>
-            </c:if>
+                    <p:column headerText="#{cc.attrs.label6}">
+                        <h:outputText value="#{m[cc.attrs.field6]}" />
+                    </p:column>
+                </c:if>
+
+                <c:if test="#{not empty cc.attrs.onclickbean}">
+                    <p:column headerText="Select">
+                        <p:commandButton action="#{cc.attrs.onclickbean.action(m[cc.attrs.onclickbean_param])}" value="View" styleClass="ui-priority-primary"/>
+                    </p:column>
+                </c:if>
+
             </p:dataTable>
         </f:view>
     </composite:implementation>

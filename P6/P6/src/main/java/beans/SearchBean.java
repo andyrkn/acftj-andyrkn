@@ -15,11 +15,9 @@ import java.util.List;
 @Named
 @RequestScoped
 public class SearchBean {
-    @Inject
-    ItemsService service;
 
     @Inject
-    MonitorableItemsRepo itemsRepo;
+    ItemsService service;
 
     @Inject
     ItemStateRepo stateRepo;
@@ -44,6 +42,7 @@ public class SearchBean {
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
+
 
     public String getUrl() {
         return url;

@@ -8,6 +8,10 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Singleton
 public class ScrapItemPriceService {
@@ -15,16 +19,20 @@ public class ScrapItemPriceService {
     @Inject
     private WebClientService webClientService;
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final List<String> xPaths= new ArrayList<String> ()
+    {
+        {
+            add("//div[contains(@class, 'product_sell')]//p[contains(@class,'ps_sell_price')]//span[contains(@class, 'price_num')]"); //pcgarage
+            add("//div[contains(@class, 'product-page-pricing')]//p[contains(@class, 'product-new-price')]"); // emag
+            add("//div[contains(@class, 'pret_tabela')]//span[contains(@class, 'productPrice')]"); // cel
+            add("//div[contains(@class, 'sdp-wrapp')]//div[contains(@class,'produs-price')]//span[contains(@class, 'price')]"); // flanco
+        }
+    };
 
     public String scrapEmag(String url) {
-        String xPath = "//div[contains(@class, 'product-page-pricing')]//p[contains(@class, 'product-new-price')]";
-        return startPolling(url, xPath);
-    }
-
-    private String startPolling(String url , String xPath){
         try {
-            String price = pollAtXpath(url, xPath);
+            String price = pollAtXpath(url);
             return price;
         }
         catch (Exception e){
@@ -34,7 +42,7 @@ public class ScrapItemPriceService {
         }
     }
 
-    private String pollAtXpath(String url, String xPath) throws IOException, InterruptedException {
+    private String pollAtXpath(String url) throws IOException, InterruptedException {
         HtmlPage page = webClientService.getClient().getPage(url);
         String price = null;
 
@@ -44,10 +52,16 @@ public class ScrapItemPriceService {
             synchronized (page) {
                 page.wait(350);
             }
-            HtmlElement el = getByXpath(page, xPath);
-            if (el != null) {
-                price = el.getFirstChild().asText();
+
+            List<HtmlElement> els = xPaths.stream()
+                    .map(xPath -> getByXpath(page, xPath))
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+
+            if(els.size() > 0){
+                price = els.get(0).getFirstChild().asText().split(",")[0];
                 break;
+
             }
         }
 

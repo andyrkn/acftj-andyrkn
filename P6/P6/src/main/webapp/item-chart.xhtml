@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:comp="http://java.sun.com/jsf/composite/jl"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <h:outputStylesheet library="css" name="style.css"/>
@@ -15,7 +14,10 @@
             <p>RTX 2060</p>
             <h:panelGroup id="view">
                 <br /><br />
-                <p:chart type="line" model="#{getChartItemBean.lineModel2}" style="height:300px;"/>
+                <ui:repeat value="#{getChartItemBean.modelList}" var="obj" varStatus="status">
+                    <p:chart type="line" model="#{obj}" style="height:300px;" />
+                    <div>URL: #{getChartItemBean.url}</div>
+                </ui:repeat>
             </h:panelGroup>
         </ui:define>
     </ui:composition>

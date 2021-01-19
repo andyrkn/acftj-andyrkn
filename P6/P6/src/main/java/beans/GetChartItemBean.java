@@ -13,6 +13,9 @@ import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Named
@@ -28,6 +31,7 @@ public class GetChartItemBean implements Serializable {
     private String itemName;
 
     private LineChartModel lineModel2;
+    private List<LineChartModel> modelList;
 
     @PostConstruct
     public void init() {
@@ -36,13 +40,14 @@ public class GetChartItemBean implements Serializable {
         }
     }
 
-    private LineChartModel initCategoryModel() {
-        LineChartModel model = new LineChartModel();
+    private ArrayList<LineChartModel> initCategoryModel() {
         List<MonitorableModel> results = service.getSpecific(itemName);
+        ArrayList<LineChartModel> list = new ArrayList<>();
 
         results.forEach(res -> {
+             LineChartModel model = new LineChartModel();
             ChartSeries chart = new ChartSeries();
-            chart.setLabel(res.url);
+            chart.setLabel("Price");
 
             res.states.forEach(state -> {
                 chart.set(state.date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
@@ -50,21 +55,23 @@ public class GetChartItemBean implements Serializable {
             });
 
             model.addSeries(chart);
+            model.setTitle(itemName);
+            model.setLegendPosition("e");
+            model.setShowPointLabels(true);
+            model.getAxes().put(AxisType.X, new CategoryAxis("Date"));
+            Axis yAxis = model.getAxis(AxisType.Y);
+            yAxis.setLabel("Price");
+            yAxis.setMin(0);
+            yAxis.setMax(7000);
+
+            list.add(model);
         });
 
-        return model;
+        return list;
     }
 
     private void createLineModels() {
-        lineModel2 = initCategoryModel();
-        lineModel2.setTitle("Price History Chart");
-        lineModel2.setLegendPosition("e");
-        lineModel2.setShowPointLabels(true);
-        lineModel2.getAxes().put(AxisType.X, new CategoryAxis("Date"));
-        Axis yAxis = lineModel2.getAxis(AxisType.Y);
-        yAxis.setLabel("Price");
-        yAxis.setMin(0);
-        yAxis.setMax(7000);
+        modelList = initCategoryModel();
     }
 
     public void action(String itemName) throws IOException {
@@ -75,6 +82,10 @@ public class GetChartItemBean implements Serializable {
 
     public LineChartModel getLineModel2() {
         return lineModel2;
+    }
+
+    public List<LineChartModel> getModelList() {
+        return modelList;
     }
 
     public String getItemName() {

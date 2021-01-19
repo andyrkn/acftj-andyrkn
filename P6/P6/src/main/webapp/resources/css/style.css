@@ -35,8 +35,12 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.ui-datatable-even {
+    background-color: red;
+}
+
 #content {
-    width: auto;
+    width: 960px;
     margin: auto;
 }
 
@@ -93,6 +97,7 @@ body {
 td {
     border-style : hidden !important;
     height: 35px;
+    text-align: center;
 }
 
 th {
@@ -104,3 +109,9 @@ tbody tr:nth-child(odd) {
     background-color: #F7F6F2;
 }
 
+.jqplot-title{
+    color: #000;
+    margin-top: 25px;
+    width: 50px;
+    font-size: 5px;
+}
